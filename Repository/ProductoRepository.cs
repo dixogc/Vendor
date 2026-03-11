@@ -25,5 +25,18 @@ namespace Vendor.Repository
             return producto;
         }
 
+        public async Task EditarProducto(Producto producto)
+        {
+            _context.Entry(producto).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EliminarProducto(Producto producto)
+        {
+            _context.Producto.Remove(producto);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }
