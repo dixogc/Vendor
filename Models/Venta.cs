@@ -5,14 +5,15 @@ public class Venta
 {
     [Key]
     public int Id { get; set; }
-    public DateTime Fecha { get; set; }
+    public DateOnly Fecha { get; set; }
     public string Lugar { get; set; }
     public decimal TotalVenta { get; set; }
-    public enum MetodoPago
-    {
-        TRANSFERENCIA,
-        EFECTIVO
-    }
+    public MetodoDePago MetodoPago { get; set; }
+}
+public enum MetodoDePago
+{
+    TRANSFERENCIA,
+    EFECTIVO
 }
 
 

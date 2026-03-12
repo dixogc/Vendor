@@ -9,5 +9,14 @@ namespace Vendor.Repository
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Venta> Venta { get; set; }
         public DbSet<RegistroDeVenta> RegistroDeVenta { get; set; }
+
+        //Metodo para poder leer el enum de Metodo de Pago
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Venta>()
+                .Property(v => v.MetodoPago)
+                .HasConversion<string>();
+        }
     }
+
 }

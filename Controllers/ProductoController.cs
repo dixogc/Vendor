@@ -17,6 +17,13 @@ namespace Vendor.Controllers
             _repository = repository;
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Producto>> CrearProducto(Producto producto)
+        {
+            await _repository.CrearProducto(producto);
+            return CreatedAtAction(nameof(ObtenerProducto), new { id = producto.Id }, producto);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> ObtenerProducto(int id)
         {
@@ -24,13 +31,6 @@ namespace Vendor.Controllers
             if (producto == null) return NotFound();
 
             return producto;
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Producto>> CrearProducto(Producto producto)
-        {
-            await _repository.CrearProducto(producto);
-            return CreatedAtAction(nameof(ObtenerProducto), new { id = producto.Id }, producto);
         }
 
         [HttpPatch("{id}")]
