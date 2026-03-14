@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vendor.Repository;
+using Vendor.Models;
 
 namespace Vendor.Controllers
 {

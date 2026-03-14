@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Vendor.Repository;
+using Vendor.Models;
 
 namespace Vendor.Controllers
 {
+    [Route("vendor/[controller]")]
+    [ApiController]
     public class RegistroVentaController : Controller
     {
         private readonly VendorDbContext _context;
@@ -14,12 +18,20 @@ namespace Vendor.Controllers
             _repository = repository;
         }
 
-        [HttpPost]
-        public async Task<ActionResult> CrearRegistroVenta(RegistroDeVenta registroDeVenta)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<RegistroDeVenta>> ObtenerRegistroVenta(int id)
         {
-            await _repository.CrearRegistroVenta(registroDeVenta);
-            return CreatedAtAction(nameof(registroDeVenta), new { id = registroDeVenta.Id }, registroDeVenta);
+            var registroVenta = await _repository.ObtenerRegistroVenta(id);
+            if (registroVenta == null) return NotFound();
+            return Ok(registroVenta);
+        }
 
+        [HttpGet("por-venta/{ventaId}")]
+        public async Task<ActionResult<List<RegistroDeVenta>>> ObtenerPorVenta(int ventaId)
+        {
+            var detalles = await _repository.ObtenerPorVenta(ventaId);
+            return Ok(detalles);
         }
     }
+    
 }

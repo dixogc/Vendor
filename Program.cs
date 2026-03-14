@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.Text.Json.Serialization;
 using Vendor.Repository;
+using Vendor.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ var stringDeConexion = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
 builder.Services.AddDbContext<VendorDbContext>(options =>
@@ -26,6 +28,7 @@ builder.Services.AddDbContext<VendorDbContext>(options =>
 
 builder.Services.AddScoped<ProductoRepository>();
 builder.Services.AddScoped<VentaRepository>();
+builder.Services.AddScoped<VentaService>();
 
 var app = builder.Build();
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.Json;
+using Vendor.Models;
 
 namespace Vendor.Repository
 {
@@ -19,8 +20,10 @@ namespace Vendor.Repository
         }
         public async Task<Venta> ObtenerVenta(int id)
         {
-            var venta = await _context.Venta.FindAsync(id);
-            return venta;
+            //También trae los productos vendidos en esa venta
+            return await _context.Venta
+                .Include(v => v.Detalles)
+                .FirstOrDefaultAsync(v => v.Id == id);
         }
         public async Task EditarVenta(Venta venta)
         {

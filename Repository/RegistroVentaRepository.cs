@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Vendor.Models;
 
 namespace Vendor.Repository
 {
@@ -20,8 +21,16 @@ namespace Vendor.Repository
 
         public async Task<RegistroDeVenta> ObtenerRegistroVenta(int id)
         {
-            var ventaRegistro = await _context.RegistroDeVenta.FindAsync(id);
-            return ventaRegistro;
+            return await _context.RegistroDeVenta
+        .Include(r => r.Producto)
+        .FirstOrDefaultAsync(r => r.Id == id);
+        }
+        public async Task<List<RegistroDeVenta>> ObtenerPorVenta(int ventaId)
+        {
+            return await _context.RegistroDeVenta
+                .Where(r => r.VentaID == ventaId)
+                .Include(r => r.Producto)
+                .ToListAsync();
         }
 
         public async Task EditarRegistroVenta(RegistroDeVenta registroDeVenta)

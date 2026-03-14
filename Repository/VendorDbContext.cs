@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Vendor.Models;
 
 namespace Vendor.Repository
 {
