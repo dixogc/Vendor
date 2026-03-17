@@ -40,7 +40,7 @@ namespace Vendor.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Venta>> ObtenerVenta(int id)
         {
-            var venta = await _repository.ObtenerVenta(id);
+            var venta = await _repository.ObtenerVentaPorId(id);
             if (venta == null) return NotFound();
             return Ok(venta);
         }

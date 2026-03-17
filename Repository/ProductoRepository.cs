@@ -20,12 +20,24 @@ namespace Vendor.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<Producto>> ObtenerTodosLosProductos()
+        {
+            var productos = new List<Producto>(); 
+            productos = _context.Producto.ToList();
+            return productos;
+        }
+
         public async Task<Producto> ObtenerPorId(int id)
         {
             var producto = await _context.Producto.FindAsync(id);
             return producto;
         }
 
+        public async Task<List<Producto>> ProductosBajoStock()
+        {
+            var productos = await _context.Producto.Where(p => p.Stock <= p.StockMinimo).ToListAsync();
+            return productos;
+        }
         public async Task EditarProducto(Producto producto)
         {
             _context.Entry(producto).State = EntityState.Modified;

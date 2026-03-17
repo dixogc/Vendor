@@ -21,9 +21,10 @@ namespace Vendor.Repository
 
         public async Task<RegistroDeVenta> ObtenerRegistroVenta(int id)
         {
-            return await _context.RegistroDeVenta
+            var registroVenta = await _context.RegistroDeVenta
         .Include(r => r.Producto)
         .FirstOrDefaultAsync(r => r.Id == id);
+            return registroVenta;
         }
         public async Task<List<RegistroDeVenta>> ObtenerPorVenta(int ventaId)
         {

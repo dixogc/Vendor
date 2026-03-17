@@ -18,12 +18,28 @@ namespace Vendor.Repository
             _context.Venta.Add(venta);
             await _context.SaveChangesAsync();
         }
-        public async Task<Venta> ObtenerVenta(int id)
+        public async Task<Venta> ObtenerVentaPorId(int id)
         {
             //También trae los productos vendidos en esa venta
             return await _context.Venta
                 .Include(v => v.Detalles)
                 .FirstOrDefaultAsync(v => v.Id == id);
+        }
+
+        public async Task<int> ObtenerVentasDelDia()
+        {
+
+            return await _context.Venta.CountAsync(f => f.Fecha == DateOnly.FromDateTime(DateTime.Now));
+            //int ventasConteo = 0;
+            //var ventas = _context.Venta.Where(f => f.Fecha == DateOnly.FromDateTime(DateTime.Now));
+            //if (ventas.Any())
+            //{
+            //    foreach(var venta in ventas)
+            //    {
+            //        ventasConteo++;
+            //    }
+            //}
+            //return ventasConteo;
         }
         public async Task EditarVenta(Venta venta)
         {

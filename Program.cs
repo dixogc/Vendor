@@ -28,6 +28,7 @@ builder.Services.AddDbContext<VendorDbContext>(options =>
 
 builder.Services.AddScoped<ProductoRepository>();
 builder.Services.AddScoped<VentaRepository>();
+builder.Services.AddScoped<RegistroVentaRepository>();
 builder.Services.AddScoped<VentaService>();
 
 var app = builder.Build();

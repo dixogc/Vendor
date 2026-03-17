@@ -9,12 +9,10 @@ namespace Vendor.Controllers
     [ApiController]
     public class RegistroVentaController : Controller
     {
-        private readonly VendorDbContext _context;
         private readonly RegistroVentaRepository _repository;
 
-        public RegistroVentaController(VendorDbContext context, RegistroVentaRepository repository)
+        public RegistroVentaController(RegistroVentaRepository repository)
         {
-            _context = context;
             _repository = repository;
         }
 

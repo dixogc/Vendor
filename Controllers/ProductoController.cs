@@ -22,16 +22,32 @@ namespace Vendor.Controllers
         public async Task<ActionResult<Producto>> CrearProducto(Producto producto)
         {
             await _repository.CrearProducto(producto);
-            return CreatedAtAction(nameof(ObtenerProducto), new { id = producto.Id }, producto);
+            return CreatedAtAction(nameof(ObtenerProductoPorId), new { id = producto.Id }, producto);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Producto>>> ObtenerTodosLosProductos()
+        {
+            var productos = await _repository.ObtenerTodosLosProductos();
+            if(productos.Count() == 0) return NoContent();
+            return Ok(productos);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Producto>> ObtenerProducto(int id)
+        public async Task<ActionResult<Producto>> ObtenerProductoPorId(int id)
         {
             var producto = await _repository.ObtenerPorId(id);
             if (producto == null) return NotFound();
 
-            return producto;
+            return Ok(producto);
+        }
+
+        [HttpGet("Stock")]
+        public async Task<ActionResult<IEnumerable<Producto>>> ObtenerProductosBajoStock()
+        {
+            var productos = await _repository.ProductosBajoStock();
+            if (productos.Count() == 0) return NoContent();
+            return Ok(productos);
         }
 
         [HttpPatch("{id}")]

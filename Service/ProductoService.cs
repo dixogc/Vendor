@@ -12,10 +12,6 @@ namespace Vendor.Service
             _context = context;
         }
 
-        public async Task<List<Producto>> ProductosBajoStock()
-        {
-            var productos = _context.Producto.Where(p => p.Stock <= p.StockMinimo).ToList();
-            return productos;
-        }
+        
     }
 }
