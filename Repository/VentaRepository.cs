@@ -26,6 +26,11 @@ namespace Vendor.Repository
                 .FirstOrDefaultAsync(v => v.Id == id);
         }
 
+        public async Task<IEnumerable<Venta>> ObtenerTodasLasVentas()
+        {
+            return await _context.Venta.ToListAsync();
+        }
+
         public async Task<int> ObtenerVentasDelDia()
         {
 

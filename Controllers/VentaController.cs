@@ -45,6 +45,14 @@ namespace Vendor.Controllers
             return Ok(venta);
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Venta>>> ObtenerTodasLasVentas()
+        {
+            var ventas = await _repository.ObtenerTodasLasVentas();
+            if (ventas.Count() == 0) return NoContent();
+            return Ok(ventas);
+        }
+
         [HttpPatch("{id}")]
         public async Task<ActionResult<Venta>> EditarVenta(int id, Venta venta)
         {
