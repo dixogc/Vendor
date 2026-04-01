@@ -35,16 +35,7 @@ namespace Vendor.Repository
         {
 
             return await _context.Venta.CountAsync(f => f.Fecha == DateOnly.FromDateTime(DateTime.Now));
-            //int ventasConteo = 0;
-            //var ventas = _context.Venta.Where(f => f.Fecha == DateOnly.FromDateTime(DateTime.Now));
-            //if (ventas.Any())
-            //{
-            //    foreach(var venta in ventas)
-            //    {
-            //        ventasConteo++;
-            //    }
-            //}
-            //return ventasConteo;
+            
         }
         public async Task EditarVenta(Venta venta)
         {
