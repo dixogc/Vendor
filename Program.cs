@@ -37,14 +37,18 @@ builder.Services.AddScoped<InversionService>();
 
 var app = builder.Build();
 
-
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = "swagger";
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    
 }
 
 app.UseHttpsRedirection();
