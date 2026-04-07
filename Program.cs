@@ -15,7 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Cadena de conexión
-var stringDeConexion = builder.Configuration.GetConnectionString("Local");
+var stringDeConexion = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
