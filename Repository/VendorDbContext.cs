@@ -10,6 +10,8 @@ namespace Vendor.Repository
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Venta> Venta { get; set; }
         public DbSet<RegistroDeVenta> RegistroDeVenta { get; set; }
+        public DbSet<Inversion> Inversion { get; set; } 
+        public DbSet<DetalleInversion> DetalleInversion { get; set; }
 
         //Metodo para poder leer el enum de Metodo de Pago
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -15,7 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Cadena de conexión
-var stringDeConexion = builder.Configuration.GetConnectionString("Default");
+var stringDeConexion = builder.Configuration.GetConnectionString("Local");
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -29,7 +29,11 @@ builder.Services.AddDbContext<VendorDbContext>(options =>
 builder.Services.AddScoped<ProductoRepository>();
 builder.Services.AddScoped<VentaRepository>();
 builder.Services.AddScoped<RegistroVentaRepository>();
+builder.Services.AddScoped<InversionRepository>();
+
 builder.Services.AddScoped<VentaService>();
+builder.Services.AddScoped<InversionService>();
+
 
 var app = builder.Build();
 

@@ -11,4 +11,4 @@ namespace Vendor.Models
         public decimal Precio_Compra { get; set; }
         public decimal Subtotal { get; set; }
     }
-}
+}        
