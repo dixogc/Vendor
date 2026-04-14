@@ -14,6 +14,7 @@ namespace Vendor.Models
 
     public enum Tipo
     {
+        SaldoInicial,
         EntradaPorVenta,
         SalidaPorInversion
     }

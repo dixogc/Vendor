@@ -45,7 +45,8 @@ namespace Vendor.Service
                         InversionID = nuevaInversion.Id,
                         ProductoID = producto.Id,
                         Precio_Compra = producto.PrecioCompra,
-                        Subtotal = item.Cantidad * producto.PrecioCompra
+                        Subtotal = item.Cantidad * producto.PrecioCompra,
+                        Cantidad = item.Cantidad,
                     };
 
                     producto.Stock += item.Cantidad; //actualizamos el stock

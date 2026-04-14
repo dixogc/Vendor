@@ -10,5 +10,6 @@ namespace Vendor.Models
         public int ProductoID { get; set; }
         public decimal Precio_Compra { get; set; }
         public decimal Subtotal { get; set; }
+        public int Cantidad { get; set; }
     }
 }        
