@@ -13,21 +13,18 @@ namespace Vendor.Service
             _context = context;
         }
 
-        public async Task<Movimientos> RegistroDeMovimiento(MovimientoRequest request)
+        public async Task<Movimientos> RegistroDeMovimientoPorSaldoInicial(MovimientoInicialRequest request)
         {
-            using var transaction = await _context.Database.BeginTransactionAsync();
-
-            try
-            {
-                var nuevoMovimiento = new Movimientos
+                var primerMovimiento = new Movimientos
                 {
-                    Tipo = request.TipoDeMovimiento,
-                    Monto = request.Monto,
-                    Fecha = DateOnly.FromDateTime(DateTime.Now)
+                    Tipo = Tipo.SaldoInicial,
+                    Monto = request.MontoInicial,
+                    Fecha = DateOnly.FromDateTime(DateTime.Now),
+                    ReferenciaID = null //no hay una entidad que almacene el saldo inicial, por lo que para este tipo la referencia es null
                 };
-            }catch (Exception ex)
-            {
-
-            }
+                _context.Movimiento.Add(primerMovimiento);
+                await _context.SaveChangesAsync();
+            return primerMovimiento;
+        }
     }
 }

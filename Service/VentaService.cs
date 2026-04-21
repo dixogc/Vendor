@@ -7,10 +7,12 @@ namespace Vendor.Service
     public class VentaService
     {
         private readonly VendorDbContext _context;
+        private readonly MovimientoRepository _movimiento;
 
-        public VentaService(VendorDbContext context)
+        public VentaService(VendorDbContext context, MovimientoRepository movimiento)
         {
             _context = context;
+            _movimiento = movimiento;
         }
 
         public async Task<Venta> RegistrarVentaCompleta(VentaRequest request)
@@ -65,6 +67,17 @@ namespace Vendor.Service
 
                 //Obtenemos el total final de la venta
                 nuevaVenta.TotalVenta = totalAcumulado;
+                await _context.SaveChangesAsync();
+
+                //Generamos un nuevo movimiento para el manejo de finanzas
+                var nuevoMovimiento = new Movimientos
+                {
+                    Tipo = Tipo.EntradaPorVenta,
+                    Monto = nuevaVenta.TotalVenta,
+                    Fecha = DateOnly.FromDateTime(DateTime.Now),
+                    ReferenciaID = nuevaVenta.Id
+                };
+                await _movimiento.RegistrarMovimiento(nuevoMovimiento);
                 await _context.SaveChangesAsync();
 
                 //Si no hubo ningún error, se hace commit de la transacción, por lo que los datos se guardarán en la BD

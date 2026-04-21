@@ -7,10 +7,12 @@ namespace Vendor.Service
     public class InversionService
     {
         private readonly VendorDbContext _context;
+        private readonly MovimientoRepository _movimiento;
 
-        public InversionService(VendorDbContext context)
+        public InversionService(VendorDbContext context, MovimientoRepository movimiento)
         {
             _context = context;
+            _movimiento = movimiento;
         }
 
         public async Task<Inversion> RegistrarInversionCompleta(InversionRequest request)
@@ -54,6 +56,17 @@ namespace Vendor.Service
                     _context.DetalleInversion.Add(detalle);
                 }
                 nuevaInversion.Total = totalAcumulado; //obtenemos el total final de inversión
+                await _context.SaveChangesAsync();
+
+                //Generamos un nuevo movimiento para el manejo de finanzas
+                var nuevoMovimiento = new Movimientos
+                {
+                    Tipo = Tipo.SalidaPorInversion,
+                    Monto = nuevaInversion.Total,
+                    Fecha = DateOnly.FromDateTime(DateTime.Now),
+                    ReferenciaID = nuevaInversion.Id
+                };
+                await _movimiento.RegistrarMovimiento(nuevoMovimiento);
                 await _context.SaveChangesAsync();
 
                 await transaction.CommitAsync();//Si no hubieron errores al guardar, se ejecuta el commit de transacción

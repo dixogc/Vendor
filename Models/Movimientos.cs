@@ -9,7 +9,7 @@ namespace Vendor.Models
         public Tipo Tipo { get; set; }
         public decimal Monto { get; set; }
         public DateOnly Fecha { get; set; }
-        public int ReferenciaID { get; set; }
+        public int? ReferenciaID { get; set; }
     }
 
     public enum Tipo
