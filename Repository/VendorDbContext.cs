@@ -7,6 +7,7 @@ namespace Vendor.Repository
     {
         public VendorDbContext(DbContextOptions<VendorDbContext> options)
         : base(options){}
+        public DbSet<Usuario> Usuario {  get; set; }
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Venta> Venta { get; set; }
         public DbSet<RegistroDeVenta> RegistroDeVenta { get; set; }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using Vendor.Models;
 using Vendor.Repository;
@@ -7,6 +8,7 @@ namespace Vendor.Controllers
 {
     [Route("vendor/[controller]")]
     [ApiController]
+    [Authorize]
     public class DetalleInversionController : Controller
     {
         private readonly VendorDbContext _context;

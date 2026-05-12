@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Vendor.Repository;
 using Vendor.Models;
+using Vendor.Repository;
 
 namespace Vendor.Controllers
 {
     [Route("vendor/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class RegistroVentaController : Controller
     {
         private readonly RegistroVentaRepository _repository;

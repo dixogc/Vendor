@@ -7,9 +7,10 @@ using Vendor.Service;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,6 +34,7 @@ builder.Services.AddScoped<InversionRepository>();
 
 builder.Services.AddScoped<VentaService>();
 builder.Services.AddScoped<InversionService>();
+builder.Services.AddScoped<UsuarioService>(); 
 
 
 var app = builder.Build();
@@ -52,6 +54,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Vendor.DTOs.Request;
 using Vendor.Models;
 using Vendor.Repository;
-using Vendor.DTOs.Request;
 using Vendor.Service;
 
 namespace Vendor.Controllers
 {
     [Route("vendor/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class MovimientosController : Controller
     {
         private readonly VendorDbContext _context;

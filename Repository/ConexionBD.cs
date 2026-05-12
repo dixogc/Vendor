@@ -6,7 +6,7 @@ public class ConexionBD
 
     public ConexionBD(IConfiguration configuration)
     {
-        cadenaConexion = configuration.GetConnectionString("DefaultConnection");
+        cadenaConexion = configuration.GetConnectionString("Default");
     }
 
     public static NpgsqlConnection ObtenerConexion()

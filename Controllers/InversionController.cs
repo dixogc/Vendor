@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vendor.DTOs.Request;
 using Vendor.Models;
@@ -9,6 +10,7 @@ namespace Vendor.Controllers
 {
     [Route("vendor/[controller]")]
     [ApiController]
+    [Authorize]
     public class InversionController : Controller
     {
         private readonly VendorDbContext _context;

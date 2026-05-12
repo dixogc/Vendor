@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Vendor.Repository;
-using Vendor.Models;
-using Vendor.Service;
 using Vendor.DTOs;
 using Vendor.DTOs.Request;
+using Vendor.Models;
+using Vendor.Repository;
+using Vendor.Service;
 
 namespace Vendor.Controllers
 {
     [Route("vendor/[controller]")]
     [ApiController]
+    [Authorize]
     public class VentaController : Controller
     {
         private readonly VendorDbContext _context;

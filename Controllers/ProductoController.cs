@@ -2,11 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Vendor.Repository;
 using Vendor.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Vendor.Controllers
 {
     [Route("vendor/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductoController : Controller
     {
         private readonly VendorDbContext _context;
