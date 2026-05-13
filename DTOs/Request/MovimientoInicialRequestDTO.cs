@@ -1,6 +1,6 @@
 ﻿namespace Vendor.DTOs.Request
 {
-    public class MovimientoInicialRequest
+    public class MovimientoInicialRequestDTO
     {
         public decimal MontoInicial { get; set; }
     }

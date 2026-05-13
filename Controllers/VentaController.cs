@@ -26,7 +26,7 @@ namespace Vendor.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Venta>> RegistrarVenta([FromBody] VentaRequest ventaRequest)
+        public async Task<ActionResult<Venta>> RegistrarVenta([FromBody] VentaRequestDTO ventaRequest)
         {
             try
             {

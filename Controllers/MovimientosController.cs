@@ -25,14 +25,14 @@ namespace Vendor.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Movimientos>> RegistrarMovimiento(Movimientos movimiento)
+        public async Task<ActionResult<Movimiento>> RegistrarMovimiento(Movimiento movimiento)
         {
             await _repository.RegistrarMovimiento(movimiento);
             return CreatedAtAction(nameof(ObtenerMovimientoPorId), new { id = movimiento.Id }, movimiento);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Movimientos>> RegistrarMovimientoInicial(MovimientoInicialRequest request)
+        public async Task<ActionResult<Movimiento>> RegistrarMovimientoInicial(MovimientoInicialRequestDTO request)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Vendor.Controllers
             return Ok(movimiento);
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Movimientos>>> ObtenerTodosLosMovimientos()
+        public async Task<ActionResult<IEnumerable<Movimiento>>> ObtenerTodosLosMovimientos()
         {
             var movimientos = await _repository.ObtenerTodosLosMovimientos();
             if (movimientos.Count == 0) return NotFound();

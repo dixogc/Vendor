@@ -3,7 +3,7 @@
 
 namespace Vendor.Models
 {
-    public class Movimientos
+    public class Movimiento
     {
         public int Id { get; set; }
         public Tipo Tipo { get; set; }
@@ -14,8 +14,8 @@ namespace Vendor.Models
 
     public enum Tipo
     {
-        SaldoInicial,
-        EntradaPorVenta,
-        SalidaPorInversion
+        SALDO_INICIAL,
+        ENTRADA_POR_VENTA,
+        SALIDA_POR_INVERSION
     }
 }

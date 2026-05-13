@@ -25,7 +25,7 @@ namespace Vendor.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Inversion>> RegistrarInversion(InversionRequest inversionRequest)
+        public async Task<ActionResult<Inversion>> RegistrarInversion(InversionRequestDTO inversionRequest)
         {
             try
             {

@@ -2,7 +2,7 @@
 
 namespace Vendor.DTOs.Request
 {
-    public class VentaRequest
+    public class VentaRequestDTO
     {
         public string Lugar {  get; set; }
         public MetodoDePago MetodoPago { get; set; }

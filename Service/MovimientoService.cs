@@ -13,11 +13,11 @@ namespace Vendor.Service
             _context = context;
         }
 
-        public async Task<Movimientos> RegistroDeMovimientoPorSaldoInicial(MovimientoInicialRequest request)
+        public async Task<Movimiento> RegistroDeMovimientoPorSaldoInicial(MovimientoInicialRequestDTO request)
         {
-                var primerMovimiento = new Movimientos
+                var primerMovimiento = new Movimiento
                 {
-                    Tipo = Tipo.SaldoInicial,
+                    Tipo = Tipo.SALDO_INICIAL,
                     Monto = request.MontoInicial,
                     Fecha = DateOnly.FromDateTime(DateTime.Now),
                     ReferenciaID = null //no hay una entidad que almacene el saldo inicial, por lo que para este tipo la referencia es null

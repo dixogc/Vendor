@@ -2,7 +2,7 @@
 
 namespace Vendor.DTOs.Response
 {
-    public class DashboardResponse
+    public class DashboardResponseDTO
     {
         public int NumeroDeVentas { get; set; }
         public IEnumerable<Producto> ProductosDeBajoStock { get; set; }

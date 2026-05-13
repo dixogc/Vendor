@@ -15,7 +15,7 @@ namespace Vendor.Service
             _movimiento = movimiento;
         }
 
-        public async Task<Venta> RegistrarVentaCompleta(VentaRequest request)
+        public async Task<Venta> RegistrarVentaCompleta(VentaRequestDTO request)
         {
             //Comenzamos una transacción
             using var transaction = await _context.Database.BeginTransactionAsync();
@@ -70,9 +70,9 @@ namespace Vendor.Service
                 await _context.SaveChangesAsync();
 
                 //Generamos un nuevo movimiento para el manejo de finanzas
-                var nuevoMovimiento = new Movimientos
+                var nuevoMovimiento = new Movimiento
                 {
-                    Tipo = Tipo.EntradaPorVenta,
+                    Tipo = Tipo.ENTRADA_POR_VENTA,
                     Monto = nuevaVenta.TotalVenta,
                     Fecha = DateOnly.FromDateTime(DateTime.Now),
                     ReferenciaID = nuevaVenta.Id
