@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BCrypt.Net;
+using Microsoft.EntityFrameworkCore;
 using Vendor.Models;
 
 namespace Vendor.Repository
@@ -14,20 +15,21 @@ namespace Vendor.Repository
 
         public async Task RegistrarNuevoUsuario(Usuario usuario)
         {
+            usuario.Password = BCrypt.Net.BCrypt.HashPassword(usuario.Password);
             _context.Usuario.Add(usuario);
             await _context.SaveChangesAsync();
         }
-        public async Task<bool> UsuarioExiste(string correo)
-        {
-            var correoRegistrado = await _context.Usuario.FirstOrDefaultAsync(u => u.Correo == correo);
-            if(correoRegistrado == null) return false;
-            return true;
-        }
         public async Task<bool> ValidarCredenciales(string correo, string password)
         {
-            bool CredencialesSonValidas = _context.Usuario
-    .Any(u => u.Correo == correo && u.Password == password);
-            return CredencialesSonValidas;
+            var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.Correo == correo);
+            if (usuario == null)
+            {
+                return false;
+            }
+            bool esValida = BCrypt.Net.BCrypt.Verify(password, usuario.Password);
+
+            return esValida;
         }
+        
     }
 }

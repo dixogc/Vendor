@@ -22,9 +22,9 @@ namespace Vendor.Service
 
         public async Task<bool> ValidarCredenciales(string correo, string password)
         {
-            var usuario = await _repository.UsuarioExiste(correo);
+            var usuario = await _repository.ValidarCredenciales(correo, password);
             if(!usuario) return false;
-            return await _repository.ValidarCredenciales(correo, BCrypt.Net.BCrypt.HashPassword(password));
+            return true;
         }
 
         public async Task<Usuario?> ValidarCredencialesSignUp(string nombre, string correo, string password)
@@ -33,9 +33,9 @@ namespace Vendor.Service
             {
                 Nombre = nombre,
                 Correo = correo,
-                Password = BCrypt.Net.BCrypt.HashPassword(password)
+                Password = password
             };
-            var usuarioExiste = await _repository.UsuarioExiste(correo);
+            var usuarioExiste = await _repository.ValidarCredenciales(correo, password);
             if (!usuarioExiste) await _repository.RegistrarNuevoUsuario(nuevoUsuario);
             return nuevoUsuario;
         }
