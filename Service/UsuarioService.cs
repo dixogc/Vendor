@@ -9,6 +9,11 @@ using Org.BouncyCastle.Crypto.Generators;
 
 namespace Vendor.Service
 {
+    public interface IUsuarioService
+    {
+        public Task<bool> ValidarCredenciales(string correo, string password);
+        public Task<Usuario?> ValidarCredencialesSignUp(string nombre, string correo, string password);
+    }
     public class UsuarioService
     {
         private readonly VendorDbContext _context;

@@ -16,7 +16,7 @@ namespace Vendor.Controllers
     {
         private readonly VendorDbContext _context;
         private readonly VentaRepository _repository;
-        private readonly VentaService _service;
+        private readonly IVentaService _service;
 
         public VentaController(VendorDbContext vendorDbContext, VentaRepository ventaRepository, VentaService service)
         {

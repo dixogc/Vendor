@@ -4,7 +4,11 @@ using Vendor.Repository;
 
 namespace Vendor.Service
 {
-    public class VentaService
+    public interface IVentaService
+    {
+        public Task<Venta> RegistrarVentaCompleta(VentaRequestDTO request);
+    }
+    public class VentaService : IVentaService
     {
         private readonly VendorDbContext _context;
         private readonly MovimientoRepository _movimiento;

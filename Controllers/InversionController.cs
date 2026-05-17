@@ -15,7 +15,7 @@ namespace Vendor.Controllers
     {
         private readonly VendorDbContext _context;
         private readonly InversionRepository _repository;
-        private readonly InversionService _service;
+        private readonly IInversionService _service;
 
         public InversionController(VendorDbContext context, InversionRepository repository, InversionService service)
         {

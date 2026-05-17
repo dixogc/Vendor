@@ -15,7 +15,7 @@ namespace Vendor.Controllers
     {
         private readonly VendorDbContext _context;
         private readonly MovimientoRepository _repository;
-        private readonly MovimientoService _service;
+        private readonly IMovimientoService _service;
 
         public MovimientosController (VendorDbContext context, MovimientoRepository repository, MovimientoService service)
         {

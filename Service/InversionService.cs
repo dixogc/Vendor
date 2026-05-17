@@ -4,6 +4,10 @@ using Vendor.Repository;
 
 namespace Vendor.Service
 {
+    public interface IInversionService
+    {
+        public Task<Inversion> RegistrarInversionCompleta(InversionRequestDTO request);
+    }
     public class InversionService
     {
         private readonly VendorDbContext _context;

@@ -9,7 +9,6 @@ namespace Vendor.Controllers
     [Route("vendor/[controller]")]
     [ApiController]
     [Authorize]
-
     public class RegistroVentaController : Controller
     {
         private readonly RegistroVentaRepository _repository;

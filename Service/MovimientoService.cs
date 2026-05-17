@@ -4,6 +4,10 @@ using Vendor.DTOs.Request;
 
 namespace Vendor.Service
 {
+    public interface IMovimientoService
+    {
+        public Task<Movimiento> RegistroDeMovimientoPorSaldoInicial(MovimientoInicialRequestDTO request);
+    }
     public class MovimientoService
     {
         private readonly VendorDbContext _context;
